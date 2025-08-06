@@ -99,9 +99,7 @@ class Command(BaseCommand):
         album_artists_to_create = []
         song_artists_to_create = []
 
-        album_iterator = albums
-
-        for album in album_iterator:
+        for album in albums:
             # Album-Artist links
             album_artist_sample = random.sample(artists, k=random.randint(1, min(3, num_artists)))
             for artist in album_artist_sample:
