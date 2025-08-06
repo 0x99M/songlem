@@ -1,3 +1,4 @@
 Django
+graphene-django
 Faker
 gunicorn
