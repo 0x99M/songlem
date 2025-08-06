@@ -13,6 +13,7 @@ Songlem is a Django-based application for managing a music library catalog, incl
 
 *   Python 3.8+
 *   Django
+*   graphene-django
 *   Faker
 *   Gunicorn
 
