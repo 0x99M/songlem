@@ -14,6 +14,7 @@ Songlem is a Django-based application for managing a music library catalog, incl
 *   Python 3.8+
 *   Django
 *   Faker
+*   Gunicorn
 
 ## Setup and Installation
 
@@ -41,34 +42,39 @@ Songlem is a Django-based application for managing a music library catalog, incl
     python3 manage.py migrate
     ```
 
-## Usage
+## Usage with Docker Compose (Recommended)
 
-### Seeding the Database
+This project is configured to run with Docker Compose. This is the recommended way to run the application for development and testing, as it uses a self-contained SQLite database.
 
-The project includes a command to populate your database with fake data. This is extremely useful for development and testing.
+### Prerequisites
 
-**Basic usage (uses default values):**
-```bash
-python3 manage.py seed
-```
+*   Docker
+*   Docker Compose
 
-**Customizing the data volume:**
-You can specify the number of artists, albums, and songs per album.
-```bash
-python3 manage.py seed --artists 50 --albums 100 --songs-per-album 15
-```
+### Running the Application
 
-**Appending data without deleting existing records:**
-Use the `--no-clean` flag to add more data to the database without clearing it first.
-```bash
-python3 manage.py seed --no-clean
-```
+1.  **Build and start the service:**
+    This command will build the Docker image and start the web service container in the background.
+    ```bash
+    docker-compose up --build -d
+    ```
 
-### Running the Development Server
+2.  **Apply database migrations:**
+    Run the `migrate` command inside the container to set up your SQLite database schema.
+    ```bash
+    docker-compose exec web python manage.py migrate
+    ```
 
-To start the Django development server, run:
-```bash
-python3 manage.py runserver
-```
+3.  **Seed the database:**
+    To populate the database with fake data, run the `seed` command.
+    ```bash
+    docker-compose exec web python manage.py seed
+    ```
+    You can now access the application at `http://12-7.0.0.1:8000`.
 
-You can now access the application at `http://127.0.0.1:8000`.
+### Daily Usage
+
+*   **Start the services:** `docker-compose up -d`
+*   **Stop the services:** `docker-compose down`
+*   **View logs:** `docker-compose logs -f web`
+*   **Run any management command:** `docker-compose exec web python manage.py <command>`
