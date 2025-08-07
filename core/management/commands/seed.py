@@ -6,9 +6,9 @@ from faker import Faker
 from core.models import Artist, Album, Song, AlbumArtist, SongArtist
 
 # Default number of items to create
-DEFAULT_ARTISTS = 15
-DEFAULT_ALBUMS = 30
-DEFAULT_SONGS_PER_ALBUM = 12
+DEFAULT_ARTISTS = 5
+DEFAULT_ALBUMS = 10
+DEFAULT_SONGS_PER_ALBUM = 3
 
 
 class Command(BaseCommand):
